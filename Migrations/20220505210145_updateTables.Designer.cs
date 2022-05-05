@@ -10,8 +10,8 @@ using pet_hotel.Models;
 namespace dotnet_bakery.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220504212159_AddPetsTable")]
-    partial class AddPetsTable
+    [Migration("20220505210145_updateTables")]
+    partial class updateTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,16 +28,14 @@ namespace dotnet_bakery.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<byte[]>("CheckedIn")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea");
-
                     b.Property<int>("PetOwnerId")
                         .HasColumnType("integer");
 
                     b.Property<int>("breed")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("checkedInAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("color")
                         .HasColumnType("integer");

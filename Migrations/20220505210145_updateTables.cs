@@ -4,10 +4,25 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace dotnet_bakery.Migrations
 {
-    public partial class AddPetsTable : Migration
+    public partial class updateTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "PetOwners",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "text", nullable: true),
+                    email = table.Column<string>(type: "text", nullable: true),
+                    pets = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PetOwners", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Pets",
                 columns: table => new
@@ -17,7 +32,7 @@ namespace dotnet_bakery.Migrations
                     name = table.Column<string>(type: "text", nullable: true),
                     breed = table.Column<int>(type: "integer", nullable: false),
                     color = table.Column<int>(type: "integer", nullable: false),
-                    CheckedIn = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
+                    checkedInAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     PetOwnerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -41,6 +56,9 @@ namespace dotnet_bakery.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Pets");
+
+            migrationBuilder.DropTable(
+                name: "PetOwners");
         }
     }
 }

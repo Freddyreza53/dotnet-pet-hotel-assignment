@@ -26,16 +26,14 @@ namespace dotnet_bakery.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<byte[]>("CheckedIn")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea");
-
                     b.Property<int>("PetOwnerId")
                         .HasColumnType("integer");
 
                     b.Property<int>("breed")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("checkedInAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("color")
                         .HasColumnType("integer");

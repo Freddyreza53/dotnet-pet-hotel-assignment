@@ -49,7 +49,36 @@ namespace pet_hotel.Controllers
             }
             return NoContent();
         }
- 
+
+        [HttpPut("{id}/checkin")]
+        public Pet Put(int id)
+        {
+
+            var pet = _context.Pets.SingleOrDefault(pet => pet.id == id);
+            pet.checkedInAt = DateTime.Now;
+
+
+            _context.Pets.Update(pet);
+            _context.SaveChanges();
+
+            return pet;
+
+        }
+
+        [HttpPut("{id}/checkout")]
+        public Pet Update(int id)
+        {
+
+            var pet = _context.Pets.SingleOrDefault(pet => pet.id == id);
+            pet.checkedInAt = null;
+
+            _context.Pets.Update(pet);
+            _context.SaveChanges();
+
+            return pet;
+
+        }
+
 
 
 
