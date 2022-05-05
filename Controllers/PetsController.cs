@@ -28,6 +28,31 @@ namespace pet_hotel.Controllers
             .Include(Pet => Pet.ownedBy);
         }
 
+        [HttpPost]
+
+        public Pet Post(Pet pet) {
+            _context.Add(pet);
+            _context.SaveChanges();
+
+            return pet;
+            
+            // .Include(Pet => Pet.ownedBy);
+        }
+
+        [HttpDelete("{id}")]
+
+        public IActionResult Delete(int id) {
+            var petToRemove = _context.Pets.FirstOrDefault(pet => pet.id ==id);
+            if (petToRemove != null) {
+                _context.Pets.Remove(petToRemove);
+                _context.SaveChanges();
+            }
+            return NoContent();
+        }
+ 
+
+
+
         // [HttpGet]
         // [Route("test")]
         // public IEnumerable<Pet> GetPets() {

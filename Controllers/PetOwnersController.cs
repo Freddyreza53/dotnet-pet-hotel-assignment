@@ -16,6 +16,7 @@ namespace pet_hotel.Controllers
             _context = context;
         }
 
+        // private static List<PetOwner> PetOwnersList = new List<PetOwner>();
         // This is just a stub for GET / to prevent any weird frontend errors that 
         // occur when the route is missing in this controller
         // [HttpGet]
@@ -28,5 +29,24 @@ namespace pet_hotel.Controllers
             return _context.PetOwners;
         }
 
+        [HttpPost]
+        public PetOwner Post(PetOwner petOwner) {
+            _context.Add(petOwner);
+            _context.SaveChanges();
+            return petOwner;
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id) {
+            var petOwnerToRemove = _context.PetOwners.FirstOrDefault(petOwner => petOwner.id == id );
+            if (petOwnerToRemove != null) {
+                _context.PetOwners.Remove(petOwnerToRemove);
+                _context.SaveChanges();
+            }
+            return NoContent();
+        }
+
+
+        
     }
 }

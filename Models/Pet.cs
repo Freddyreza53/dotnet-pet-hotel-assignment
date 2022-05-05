@@ -11,7 +11,17 @@ namespace pet_hotel
 
         Shepherd,
 
-        Terrier
+        Terrier,
+
+        Beagle,
+
+        Bulldog,
+
+        Boxer,
+
+        Labrador,
+
+        Retriever
     }
     public enum PetColorType {
 
@@ -19,7 +29,11 @@ namespace pet_hotel
 
         Tricolor,
 
-        Spotted
+        Spotted,
+
+        White,
+
+        Golden
     }
     public class Pet {
         public int id {get; set;}
