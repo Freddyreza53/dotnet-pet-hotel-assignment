@@ -9,6 +9,8 @@ namespace pet_hotel
         public int id {get; set;}
         public string name {get; set;}
         public string email {get; set;}
+    
+        [NotMapped]
         public int pets {get; set;}
     }
 }
